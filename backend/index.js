@@ -45,17 +45,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
-  return res
-    .status(200)
-    .json({
-      message: "Image has been uploaded successfully,",
-      filename: req.file.filename,
-    });
+  return res.status(200).json({
+    message: "Image has been uploaded successfully,",
+    filename: req.file.filename,
+  });
 });
 
 //app.use(verifyToken);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, "0.0.0.0", () => {
   connectDb();
   console.log("listening on port 8000");
 });

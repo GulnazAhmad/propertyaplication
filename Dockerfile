@@ -18,5 +18,5 @@ RUN cd backend && npm install
 COPY --from=frontend /app/frontend/dist ./backend/public
 COPY backend ./backend
 
-EXPOSE 5000
+EXPOSE 8000
 CMD ["node", "backend/server.js"]

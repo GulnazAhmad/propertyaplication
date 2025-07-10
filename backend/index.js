@@ -51,6 +51,13 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   });
 });
 
+//important for your making your application go live
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 //app.use(verifyToken);
 
 app.listen(process.env.PORT || 8000, "0.0.0.0", () => {

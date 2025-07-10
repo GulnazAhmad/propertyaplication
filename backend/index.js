@@ -25,7 +25,7 @@ const connectDb = async () => {
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 app.use(router);
 app.use(userRouter);
 app.use(postRouter);
@@ -53,7 +53,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 //app.use(verifyToken);
 
-app.listen(process.env.PORT, "0.0.0.0", () => {
+app.listen(process.env.PORT || 8000, "0.0.0.0", () => {
   connectDb();
   console.log("listening on port 8000");
 });

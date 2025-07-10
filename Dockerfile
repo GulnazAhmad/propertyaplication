@@ -19,4 +19,4 @@ COPY --from=frontend /app/frontend/dist ./backend/public
 COPY backend ./backend
 
 EXPOSE 8000
-CMD ["node", "backend/server.js"]
+CMD ["node", "backend/index.js"]

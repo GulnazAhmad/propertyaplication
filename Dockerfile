@@ -15,8 +15,9 @@ COPY backend/package*.json ./backend/
 RUN cd backend && npm install
 
 # Copy built frontend into backend public folder
-COPY --from=frontend /app/frontend/dist ./backend/public
 COPY backend ./backend
+COPY --from=frontend /app/frontend/dist ./backend/public
+
 
 EXPOSE 8000
 CMD ["node", "backend/index.js"]

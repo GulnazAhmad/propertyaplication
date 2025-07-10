@@ -26,10 +26,10 @@ app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(cookieParser());
 app.use(cors({ origin: true, credentials: true }));
-app.use(router);
-app.use(userRouter);
-app.use(postRouter);
-app.use(commentRouter);
+//app.use(router);
+//app.use(userRouter);
+//app.use(postRouter);
+//app.use(commentRouter);
 
 //image uplaod
 const storage = multer.diskStorage({
@@ -49,6 +49,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     message: "Image has been uploaded successfully,",
     filename: req.file.filename,
   });
+});
+app.get("/", (req, res) => {
+  res.send("✅ Backend container is running fine");
 });
 
 //important for your making your application go live

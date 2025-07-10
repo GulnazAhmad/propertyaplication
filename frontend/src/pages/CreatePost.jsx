@@ -44,10 +44,10 @@ const CreatePost = () => {
       const data = new FormData();
 
       data.append("file", image);
-      console.log("formdata is here", data);
+      //console.log("formdata is here", data);
       try {
         const imgUploads = await axios.post(URL + "/api/upload", data);
-        console.log(imgUploads.data);
+        //console.log(imgUploads.data);
         post.photo = imgUploads.data.filename; // ✅ use the actual returned filename
       } catch (e) {
         console.log(e.message);
@@ -58,7 +58,7 @@ const CreatePost = () => {
       const res = await axios.post(URL + "/createpost", post, {
         withCredentials: true,
       });
-      console.log(res.data);
+      //console.log(res.data);
       navigate("/posts/post/" + res.data._id);
 
       //console.log(res.data);

@@ -2,10 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
-//const router = require("./Routes/authRouter");
-//const userRouter = require("./Routes/usersRouter");
-//const postRouter = require("./Routes/postsRouter");
-//const commentRouter = require("./Routes/commentsRouter");
+const router = require("./Routes/authRouter");
+const userRouter = require("./Routes/usersRouter");
+const postRouter = require("./Routes/postsRouter");
+const commentRouter = require("./Routes/commentsRouter");
 const cookieParser = require("cookie-parser");
 const verifyToken = require("./Middleware/authMiddleware.js");
 const cors = require("cors");
@@ -26,10 +26,10 @@ app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(cookieParser());
 app.use(cors({ origin: true, credentials: true }));
-//app.use(router);
-//app.use(userRouter);
-//app.use(postRouter);
-//app.use(commentRouter);
+app.use(router);
+app.use(userRouter);
+app.use(postRouter);
+app.use(commentRouter);
 
 //image uplaod
 const storage = multer.diskStorage({
@@ -50,20 +50,10 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     filename: req.file.filename,
   });
 });
-app.get("/", (req, res) => {
-  res.send("✅ Backend container is running fine");
-});
 
-//important for your making your application go live
-
-app.use(express.static(path.join(__dirname, "public")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 //app.use(verifyToken);
 
-app.listen(process.env.PORT || 8000, "0.0.0.0", () => {
+app.listen(process.env.PORT, () => {
   connectDb();
   console.log("listening on port 8000");
 });

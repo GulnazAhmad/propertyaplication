@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
-const cookieParser = require("cookie-parser");
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 const verifyToken = (req, res, next) => {
   const token = req.cookies.jwttoken;
   if (!token) {
@@ -14,4 +14,4 @@ const verifyToken = (req, res, next) => {
     next();
   });
 };
-module.exports = verifyToken;
+export default verifyToken;

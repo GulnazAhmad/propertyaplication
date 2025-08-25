@@ -22,8 +22,8 @@ app.use(
     credentials: true,
   })
 );
-app.use("/api", router);
-app.use("/api", propertyrouter);
+app.use(router);
+app.use(propertyrouter);
 
 app.listen(5000, () => {
   connectDb();

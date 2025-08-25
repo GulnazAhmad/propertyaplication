@@ -13,10 +13,12 @@ const PropertyPostSchema = mongoose.Schema(
     state: {
       type: String,
       required: true,
+      enum: ["Odisha", "Karnataka", "Maharashtra", "Delhi"], // ✅ add states
     },
     city: {
       type: String,
       required: true,
+      enum: ["Bhubaneswar", "Cuttack", "Pune", "Bangalore"], // ✅ add cities
     },
     location: {
       type: String,
@@ -39,7 +41,7 @@ const PropertyPostSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    Amenities: {
+    amenities: {
       type: [String],
       required: true,
       enum: [
